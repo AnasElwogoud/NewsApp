@@ -1,0 +1,83 @@
+<div class="form_wrapper">
+    <div class="form_container">
+        <div class="title_container">
+            <h2>User Registration</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="">
+                <form (ngSubmit)="userRegister()" [formGroup]="form">
+                    <div class="input_field"><span><i aria-hidden="true" class="fa fa-user-o"></i></span>
+                        <input type="text" name="userName" placeholder="Username" [(ngModel)]="user.userName"
+                            class="form-control" formControlName="userName" />
+                        <div *ngIf="f['userName'].touched && f['userName'].invalid" class="alert alert-danger">
+                            <div *ngIf="f['userName'].errors">
+                                Username is Required & Min Length is 5
+                                <!-- Or Your Username is invalid -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                        <input type="email" name="email" placeholder="Email" [(ngModel)]="user.email"
+                            formControlName="email" class="form-control" />
+                        <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger">
+                            <div *ngIf="f['email'].errors">
+                                Invalid Email, Must use anas@ntg.com
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                        <input type="password" name="passWD" formControlName="passWD" [(ngModel)]="user.passWD"
+                            placeholder="Password" class="form-control">
+                        <div *ngIf="f['passWD'].touched && f['passWD'].invalid" class="alert alert-danger">
+                            <div *ngIf="f['passWD'].errors">
+                                Password is Required & min length 8
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                        <input type="password" name="cpassword" formControlName="cpassword" class="form-control"
+                            [(ngModel)]="user.cpassword" placeholder="Confirm Password">
+                        <div *ngIf="f['cpassword'].touched && f['cpassword'].invalid" class="alert alert-danger">
+                            <div *ngIf="f['cpassword'].errors && f['cpassword'].errors['required']">
+                                Password is Required
+                            </div>
+                            <div *ngIf="f['cpassword'].errors && f['cpassword'].errors['confirmedValidator']">
+                                Password and Confirmed Password Must be Matching
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                                <input type="text" name="firstName" placeholder="First Name"
+                                    [(ngModel)]="user.full_name.firstName" formControlName="firstName"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                                <input type="text" name="lastName" placeholder="Last Name"
+                                    [(ngModel)]="user.full_name.lastName" class="form-control"
+                                    formControlName="lastName" />
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary d-block m-auto" [disabled]="!form.valid"> Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<p-toast></p-toast>
+
+
+<!-- <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                        <input type="password" name="password" placeholder="Password" [(ngModel)]="user.passWD"
+                            required />
+                    </div>
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                        <input type="password" name="password" placeholder="Re-type Password"
+                            [(ngModel)]="user.cpassword" required />
+                    </div> -->

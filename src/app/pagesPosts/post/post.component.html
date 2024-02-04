@@ -1,0 +1,19 @@
+<div class="bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="card mt-3 mb-3 m-3 bg-white-alpha-10" style="width: 18rem;">
+                <img src="assets/uploaded/{{post.filePath}}" class="card-img-top w-100 mt-3 img-thumbnail" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">{{post.content}}</p>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">Last updated {{post.createdOn}}</small>
+                    </div>
+                    <p class="pt-3">Created By <a href="#/user/{{post.userName}}"
+                            class="text-primary fw-bold text-capitalize">{{post.userName}}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<form #loginFrm class="bg-transparent">
+    <div class="d-flex justify-content-center mt-5">
+        <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+            <div class="text-center mb-5">
+                <p href="#" title="Home" class="logo"><i
+                        class="fa fa-solid fa-newspaper-o fw-bold">News<span>App</span></i>
+                </p>
+                <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
+                <span class="text-600 font-medium line-height-3">Don't have an account?</span>
+                <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" href="/#/auth/signup">Subscribe
+                    today!</a>
+            </div>
+            <div>
+                <label for="username" class=" block text-900 font-medium mb-2">Username</label>
+                <input required id="username" type="text" name="UserName" [(ngModel)]="UserName" placeholder="Username"
+                    pInputText class="w-full mb-3">
+                <label for="PassWd" class="block text-900 font-medium mb-2">Password</label>
+                <input [(ngModel)]="PassWd" name="PassWd" required id="PassWd" type="password" placeholder="Password"
+                    pInputText class="w-full mb-6">
+                <button (click)="HandleLogin()" [disabled]="!loginFrm.checkValidity() || IsCallingBkEnd" pButton
+                    label="Sign In" [icon]="'pi ' + (IsCallingBkEnd ? 'pi-spinner pi-spin' : 'pi-user')"
+                    class="w-full"></button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<p-toast></p-toast>
