@@ -1,0 +1,15 @@
+:root {
+    --main-color: #01b1b1;
+}
+
+body {
+    background: url(assets/bg2.jpg) center / cover no-repeat fixed;
+    // background-color: rgba(0, 0, 0) !important;
+    height: 100vh;
+    margin: 0;
+}
+
+.card img {
+    height: 200px;
+    border-radius: 50px;
+}

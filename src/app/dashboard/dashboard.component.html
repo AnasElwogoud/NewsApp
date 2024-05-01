@@ -1,0 +1,94 @@
+<p-table [value]="posts" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            News List
+            <p-button icon="pi pi-plus" (onClick)="AddButton()" title="Add News"></p-button>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Content</th>
+            <th>UserName</th>
+            <!-- <th>Edit</th> -->
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-post>
+        <tr>
+            <td>{{ post.id }}</td>
+            <td>{{ post.title }}</td>
+            <td>{{ post.category }}</td>
+            <td class="">{{ post.content }}</td>
+            <td class="text-capitalize">{{ post.userName }}</td>
+            <!-- <td><p-button icon="pi pi-pencil" (onClick)="EditButton(post)" title="Edit News"></p-button>
+            </td> -->
+        </tr>
+    </ng-template>
+</p-table>
+<p-dialog *ngIf="postPayload" header="Add Post" [(visible)]="showAddDialog" [style]="{width: '50vw'}">
+    <form class='form container addform bg-black-alpha-80' #postForm="ngForm" (ngSubmit)="addPost()">
+        <div class='field required'>
+            <label class='label required' for='title'>Title</label>
+            <input class='text-input form-control' id='title' type='text' [(ngModel)]="postPayload.title" name="title"
+                #title="ngModel" required minlength="20">
+            <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+                <div *ngIf="title.errors">
+                    Title is required & min length is 20
+                </div>
+            </div>
+        </div>
+
+        <div class='field required'>
+            <label for="content" class="label required">Content</label>
+
+            <textarea class="textarea" id="content" rows="3" [(ngModel)]="postPayload.content" name="content" required
+                #content=ngModel minlength="50"></textarea>
+            <div *ngIf="content.invalid && (content.dirty || content.touched)" class="alert alert-danger">
+                <div *ngIf="content.errors">
+                    Content is required & min length is 50
+                </div>
+            </div>
+        </div>
+        <div class='field row'>
+            <p class="label required p-0 text-center">Category</p>
+            <div class="dropdown dropdown-dark">
+                <select class="dropdown-select" [(ngModel)]="postPayload.category" name="category" required
+                    #category=ngModel title="Select Category">
+                    <option value="business">Business</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="health">Health</option>
+                    <option value="science">Science</option>
+                    <option value="sports">Sports</option>
+                    <option value="technology">Technology</option>
+                    <option value="economy">Economy</option>
+                </select>
+            </div>
+            <div *ngIf="category.invalid && (category.dirty || category.touched)" class="alert alert-danger">
+                <div *ngIf="category.errors">
+                    category is required.
+                </div>
+            </div>
+        </div>
+        <div class="input-group my-4">
+            <input type="file" class="label required" (change)="onFileChanged($event)" name="filePath" required
+                #filePath=ngModel ngModel>
+        </div>
+        <div class='d-flex justify-content-center text-center m-auto'>
+            <button type="submit" class="btn btn-danger px-4" title="Add Post"
+                [disabled]="!postForm.valid">Post</button>
+        </div>
+    </form>
+    <p-toast></p-toast>
+</p-dialog>
+<!-- 
+<div class="products-row" *ngFor="let post of posts | async">
+    <div class="product-cell image">{{post.id}}</div>
+    <div class="product-cell category">{{post.title}}</div>
+    <div class="product-cell status-cell">{{post.content}}</div>
+    <div class="product-cell sales">11</div>
+    <div class="product-cell stock">36</div>
+    <div class="product-cell price">$560</div>
+    <div class="product-cell price">$560</div>
+</div> -->

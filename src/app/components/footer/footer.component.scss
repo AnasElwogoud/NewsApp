@@ -1,0 +1,8 @@
+footer {
+    background-color: rgba($color: #000000, $alpha: .5);
+}
+
+li a:hover {
+    color: var(--main-color) !important;
+    font-weight: bold;
+}

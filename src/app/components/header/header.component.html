@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-xl">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu-bar d-flex justify-content-around w-100">
+                <li class="logo my-3 my-xl-0 hvr-wobble-vertical">
+                    <a href="#" class="logo" title="Home">
+                        <i class="fa fa-solid fa-newspaper-o fw-bold">News<span>App</span></i>
+                    </a>
+                </li>
+                <li *ngFor="let item of items" class="mb-3 mb-xl-0">
+                    <a [routerLink]="[item.routerLink]" [title]="[item.label]">
+                        {{ item.label }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" routerLink="/dashboard" *ngIf="_loginService.roleMatch(['Admin'])">Dashboard</a>
+                </li>
+                <div class="btn-login mr-2 mb-3 mb-xl-0" *ngIf="!isLoggedIn()">
+                    <a href="/#/auth/login" class="d-flex btn btn-outline-success login">
+                        <i class="fa fa-user mr-2" aria-hidden="true"></i>
+                        Login
+                    </a>
+                </div>
+                <div class="text-white d-flex justify-content-between" *ngIf="isLoggedIn()">
+                    <p-avatar icon="pi pi-user" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
+                        shape="circle"></p-avatar>
+                    {{_loginService.FullName.firstName}}
+                    <a class="btn-login mr-2 mb-3 mb-xl-0 btn btn-outline-danger
+                    text-white" href="#" (click)="handleLogOut($event)">
+                        <i class="pi pi-power-off"></i>
+                    </a>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
